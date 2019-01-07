@@ -41,30 +41,27 @@ def welcome(title):
     print("\t\t", title, "\n")
  
 def main():
-    trivia_file = open_file("trivia.txt", "r")
-    title = next_line(trivia_file)
+    the_file = open_file("final.txt", "r")
+    title = next_line(the_file)
     welcome(title)
     score = 0
-    category, question, answers, correct, explanation = next_block(trivia_file)
+    category, question, answers, correct, explanation = next_block(the_file)
     while category:
         print(category)
         print(question)
         for i in range(4):
-            print("\t", i + 1, "-", answers[i])
-        answer = input("What's your answer?: ")
+            print(answers[i])
+        answer = input("a,b,c,d ")
         if answer == correct:
-            print("\nRight!", end=" ")
+            print("Right!")
             score += 1
         else:
-            print("\nWrong.", end=" ")
+            print("Wrong.")
         print(explanation)
-        print("Score:", score, "\n\n")
-        category, question, answers, correct, explanation = next_block(trivia_file)
+        print("Score:", score)
+        category, question, answers, correct, explanation = next_block(the_file)
 
-    trivia_file.close()
-
-    print("That was the last question!")
+    the_file.close()
     print("You're final score is", score)
  
 main()  
-input("\n\nPress the enter key to exit.")
